@@ -1,0 +1,35 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card img {
+    height: 300px; /* Ajustar altura de la imagen */
+    object-fit: cover;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif; /* Aplicar la fuente a todo el cuerpo del documento */
+}
+
+h1 span {
+    color: #004085; /* Color azul similar al de la imagen */
+    font-weight: 600; /* Hacerlo un poco más grueso para destacar */
+}
+
+.card-title {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    font-weight: 600; /* Aplicar la fuente con peso 600 */
+    margin: 0;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Eleva la tarjeta ligeramente */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Añade una sombra suave */
+}
+
