@@ -25,11 +25,10 @@ h1 span {
 }
 
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px); /* Eleva la tarjeta ligeramente */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Añade una sombra suave */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
