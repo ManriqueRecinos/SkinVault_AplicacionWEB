@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elige a tu Campeón</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/carousel.css">
     <style>
         .card:hover {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -20,6 +20,11 @@
         <h1>ELIGE A TU <span class="text-primary">CAMPEÓN</span></h1>
         <p>Encuentra a tu campeón ideal y descubre todas sus skins.</p>
 
+        <!-- Buscador -->
+        <form method="GET" class="mb-4">
+            <input type="text" name="search" class="form-control" placeholder="Buscar campeón..." required>
+        </form>
+
         <div class="row">
             <?php if (!empty($champions)) : ?>
                 <?php foreach ($champions as $id => $champion) : ?>
@@ -29,7 +34,7 @@
                                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= $champion['id']; ?>_0.jpg" class="card-img-top" alt="<?= $champion['id']; ?>">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $champion['name']; ?></h5>
-                                    <p class="card-text"><?= $champion['title']; ?></p>
+
                                 </div>
                             </div>
                         </a>
