@@ -14,9 +14,23 @@ class ChampionController {
     }
 
     public function showSkins($championId) {
-        $skins = $this->model->getChampionSkins($championId);
-        include 'views/skins.php'; // Vista para mostrar skins del campeón
+        // Obtener datos del campeón específico
+        $championJson = file_get_contents("https://ddragon.leagueoflegends.com/cdn/14.19.1/data/en_US/champion/{$championId}.json");
+        $championData = json_decode($championJson, true);
+    
+        // Verificar si se obtuvo correctamente el campeón
+        if (isset($championData['data'][$championId])) {
+            $champion = $championData['data'][$championId];
+            $skins = $champion['skins'];
+        } else {
+            $champion = null;
+            $skins = [];
+        }
+        
+        include 'views/skins.php'; // Vista para mostrar skins
     }
+    
 }
+
 
 ?>
