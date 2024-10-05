@@ -14,7 +14,7 @@ class ChampionController {
     }
 
     public function showSkins($championId) {
-        // Obtener datos del campeón específico
+        // Obtener datos del campeón específico desde la API de Riot
         $championJson = file_get_contents("https://ddragon.leagueoflegends.com/cdn/14.19.1/data/en_US/champion/{$championId}.json");
         $championData = json_decode($championJson, true);
     
@@ -29,8 +29,5 @@ class ChampionController {
         
         include 'views/skins.php'; // Vista para mostrar skins
     }
-    
 }
-
-
 ?>

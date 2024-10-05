@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="index.php">Campeones</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Noticias</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Mis Skins</a></li>
                 <li class="nav-item"><a class="nav-link" href="">Asistencia</a></li>
             </ul>
         </div>

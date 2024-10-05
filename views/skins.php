@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $champion['name'] ?? 'Campeón no encontrado'; ?> - Aspectos Disponibles</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/carousel.css">
-    <link rel="stylesheet" href="../assets/styles.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -95,7 +93,6 @@
         <p>No hay aspectos disponibles para <?= $champion['name'] ?? 'este campeón'; ?>.</p>
     <?php endif; ?>
 
-
     <!-- Carrusel para mostrar las skins -->
     <?php if (!empty($skins)): ?>
         <div id="skinCarousel" class="carousel slide mb-4" data-ride="carousel" data-interval="5000">
@@ -106,15 +103,13 @@
                     <div class="carousel-item <?= $index === 0 ? 'active' : ''; ?>">
                         <div class="d-flex justify-content-center flex-wrap">
                             <?php foreach ($skinGroup as $skin): ?>
-                                <?php if ($skin['num'] != 0): ?>
-                                    <div class="card skin-card" id="skin-<?= $skin['num']; ?>" data-skin-num="<?= $skin['num']; ?>">
-                                        <button class="add-button" onclick="toggleAvailability(<?= $skin['num']; ?>, <?= $championId; ?>, '<?= $skin['name']; ?>')">+</button>
-                                        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= $championId; ?>_<?= $skin['num']; ?>.jpg" class="card-img-top" alt="<?= $skin['name']; ?>">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $skin['name']; ?></h5>
-                                        </div>
+                                <div class="card skin-card" id="skin-<?= $skin['num']; ?>" data-skin-num="<?= $skin['num']; ?>">
+                                    <button class="add-button" onclick="toggleAvailability(<?= $skin['num']; ?>, '<?= $championId; ?>', '<?= $skin['name']; ?>')">+</button>
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= $championId; ?>_<?= $skin['num']; ?>.jpg" class="card-img-top" alt="<?= $skin['name']; ?>">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= $skin['name']; ?></h5>
                                     </div>
-                                <?php endif; ?>
+                                </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -129,54 +124,52 @@
                 <span class="sr-only">Siguiente</span>
             </a>
         </div>
-    <?php else: ?>
-        <p>No hay aspectos disponibles para <?= $champion['name'] ?? 'este campeón'; ?>.</p>
     <?php endif; ?>
-
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 <script>
-    function toggleAvailability(skinNum, championId, skinName) {
-        var skinCard = document.getElementById('skin-' + skinNum);
+// Función para alternar la disponibilidad de skins
+function toggleAvailability(skinNum, championId, skinName) {
+    var skinCard = document.getElementById('skin-' + skinNum);
 
-        if (skinCard.style.filter === 'grayscale(100%)') {
-            skinCard.style.filter = 'none'; // Cambia a color original
+    // Aquí siempre se mostrarán las skins, pero solo se guardarán si el usuario hace clic en el botón "+"
+    if (skinCard.style.filter === 'grayscale(100%)') {
+        skinCard.style.filter = 'none'; // Cambia a color original
 
-            // Añadir skin al usuario
-            $.ajax({
-                url: 'add_skin.php',  // Archivo PHP para gestionar el guardado
-                type: 'POST',
-                data: {
-                    skin_num: skinNum,
-                    champion_id: championId,
-                    skin_name: skinName,
-                    user_id: <?= $_SESSION['user_id']; ?>
-                },
-                success: function(response) {
-                    console.log(response);  // Ver respuesta del servidor
-                }
-            });
-        } else {
-            skinCard.style.filter = 'grayscale(100%)'; // Volver a gris si se deselecciona
+        // Añadir skin al usuario
+        $.ajax({
+            url: 'add_skin.php',  // Archivo PHP para gestionar el guardado
+            type: 'POST',
+            data: {
+                skin_num: skinNum,
+                champion_id: championId,
+                skin_name: skinName,
+                user_id: <?= $_SESSION['user_id']; ?> // ID del usuario
+            },
+            success: function(response) {
+                console.log(response);  // Ver respuesta del servidor
+            }
+        });
+    } else {
+        skinCard.style.filter = 'grayscale(100%)'; // Volver a gris si se deselecciona
 
-            // Eliminar skin del usuario
-            $.ajax({
-                url: 'remove_skin.php',  // Archivo PHP para gestionar la eliminación
-                type: 'POST',
-                data: {
-                    skin_num: skinNum,
-                    user_id: <?= $_SESSION['user_id']; ?>
-                },
-                success: function(response) {
-                    console.log(response);  // Ver respuesta del servidor
-                }
-            });
-        }
+        // Eliminar skin del usuario
+        $.ajax({
+            url: 'remove_skin.php',  // Archivo PHP para gestionar la eliminación
+            type: 'POST',
+            data: {
+                skin_num: skinNum,
+                user_id: <?= $_SESSION['user_id']; ?>
+            },
+            success: function(response) {
+                console.log(response);  // Ver respuesta del servidor
+            }
+        });
     }
+}
 </script>
 
 </body>

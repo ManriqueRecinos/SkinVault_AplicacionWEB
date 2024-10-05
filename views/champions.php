@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elige a tu Campeón</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/carousel.css">
     <style>
         .card:hover {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
