@@ -1,0 +1,30 @@
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+.champion-header {
+    margin-bottom: 30px;
+}
+.default-skin {
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.skin-card {
+    transition: transform 0.2s;
+    height: 350px; /* Altura fija para las tarjetas */
+    display: flex; /* Para centrar contenido */
+    flex-direction: column; /* Para organizar el contenido verticalmente */
+    justify-content: space-between; /* Espaciado entre imagen y título */
+}
+.skin-card img {
+    height: 200px; /* Altura fija para la imagen */
+    object-fit: cover; /* Asegura que la imagen mantenga proporciones */
+}
+.skin-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}

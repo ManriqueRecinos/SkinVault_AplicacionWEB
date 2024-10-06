@@ -1,35 +1,55 @@
 <?php
-class UserModel {
-    private $db;
+class UserModel
+{
+  private $dbConnection;
 
-    public function __construct($dbConnection) {
-        $this->db = $dbConnection;
+  public function __construct($dbConnection)
+  {
+    $this->dbConnection = $dbConnection;
+  }
+
+  public function registerUser($username, $password)
+  {
+    try {
+      // Asegúrate de que los campos en la consulta coinciden con la tabla
+      $query = "INSERT INTO usuarios (nombre, contrasenia) VALUES (:username, :password)";
+      $stmt = $this->dbConnection->prepare($query);
+
+      // Asignamos los parámetros correctamente
+      $stmt->bindParam(':username', $username);
+      $stmt->bindParam(':password', $password);
+
+      // Ejecutamos la consulta
+      if ($stmt->execute()) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (PDOException $e) {
+      echo 'Error al registrar el usuario: ' . $e->getMessage();
+      return false;
     }
+  }
 
-    public function registerUser($nombre, $email, $hashedPassword) {
-        $query = "INSERT INTO usuarios (nombre, email, contraseña) VALUES (:nombre, :email, :contraseña)";
-        
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':contraseña', $hashedPassword);
+  public function checkUser($username, $password)
+  {
+    try {
+      $query = "SELECT * FROM usuarios WHERE nombre = :username";
+      $stmt = $this->dbConnection->prepare($query);
+      $stmt->bindParam(':username', $username);
+      $stmt->execute();
 
-        return $stmt->execute();
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      // Verificamos si la contraseña es correcta
+      if ($user && password_verify($password, $user['contrasenia'])) {
+        return $user;
+      } else {
+        return false;
+      }
+    } catch (PDOException $e) {
+      echo 'Error al verificar el usuario: ' . $e->getMessage();
+      return false;
     }
-
-    public function loginUser($email, $password) {
-        $query = "SELECT contraseña FROM usuarios WHERE email = :email";
-        
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Verificar si la contraseña es correcta
-        if ($result && password_verify($password, $result['contraseña'])) {
-            return true; // Login exitoso
-        }
-        return false; // Login fallido
-    }
+  }
 }
