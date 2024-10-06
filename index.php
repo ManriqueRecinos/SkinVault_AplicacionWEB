@@ -4,7 +4,7 @@ session_start(); // Iniciar la sesión
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['user'])) { // Verifica si 'user' está en la sesión
   header('Location: /skinvault/views/login.php'); // Redirige a la página de inicio de sesión
-  exit(); // Asegúrate de detener la ejecución del script
+  exit();
 }
 
 require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/dbConnection.php';

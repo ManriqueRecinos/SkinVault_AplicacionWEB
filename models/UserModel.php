@@ -11,7 +11,6 @@ class UserModel
   public function registerUser($username, $password)
   {
     try {
-      // Asegúrate de que los campos en la consulta coinciden con la tabla
       $query = "INSERT INTO usuarios (nombre, contrasenia) VALUES (:username, :password)";
       $stmt = $this->dbConnection->prepare($query);
 
