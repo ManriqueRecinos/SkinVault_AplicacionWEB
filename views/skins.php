@@ -117,6 +117,12 @@
     <?php endif; ?>
 </div>
 
+    <!-- Sección de depuración para mostrar el arreglo de skins -->
+    <div class="container mt-5">
+        <h3>Debug: JSON de Skins</h3>
+        <pre><?php echo json_encode($skins, JSON_PRETTY_PRINT); ?></pre> <!-- Muestra el JSON formateado -->
+    </div>
+    
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
