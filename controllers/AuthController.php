@@ -11,16 +11,16 @@ class AuthController
     {
         $this->userModel = new UserModel($dbConnection);
     }
-
+    
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
+    
             // Verificar las credenciales del usuario
             $user = $this->userModel->checkUser($username, $password);
-
+    
             if ($user) {
                 // Si las credenciales son correctas, iniciar sesión
                 session_start();
@@ -33,7 +33,6 @@ class AuthController
             }
         }
     }
-
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
