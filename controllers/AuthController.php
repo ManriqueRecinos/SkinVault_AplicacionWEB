@@ -25,6 +25,7 @@ class AuthController
                 // Si las credenciales son correctas, iniciar sesión
                 session_start();
                 $_SESSION['user'] = $user['nombre']; // Guardar nombre de usuario en la sesión
+                $_SESSION['user_id'] = $user['id']; // Guardar ID del usuario en la sesión
                 header('Location: ../'); // Redirigir a champions.php
                 exit;
             } else {
@@ -33,6 +34,7 @@ class AuthController
             }
         }
     }
+    
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -11,12 +11,28 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/dbConnection.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/controllers/ChampionController.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/controllers/AuthController.php';
 
-
 // Instanciamos los controladores con la conexión a la base de datos
 $controller = new ChampionController($dbConnection);
 $authController = new AuthController($dbConnection);
 
+// Llamar al método saveSkin si se ha enviado una solicitud POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['userId'], $_POST['championId'], $_POST['skinName'], $_POST['skinNumber'], $_POST['chromas'], $_POST['idSkin'])) {
+        $userId = $_POST['userId'];
+        $championId = $_POST['championId'];
+        $skinName = $_POST['skinName'];
+        $skinNumber = $_POST['skinNumber'];
+        $chromas = $_POST['chromas'];
+        $idSkin = $_POST['idSkin'];
 
+        // Llamar a la función para guardar skin
+        $controller->saveUserSkin($userId, $championId, $skinName, $skinNumber, $chromas, $idSkin);
+    } else {
+        echo "Datos insuficientes para guardar el skin.";
+    }
+}
+
+// Manejar acciones GET
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'showChampions':
@@ -33,11 +49,10 @@ if (isset($_GET['action'])) {
             $authController->logout();
             break;
         default:
-            echo "Acción no válida.";
+            header('Location: /skinvault/views/error.php'); // Redirige a una página de error
             break;
     }
 } else {
     $controller->showChampions(); // Mostrar campeones por defecto
 }
 ?>
-

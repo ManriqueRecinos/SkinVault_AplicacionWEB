@@ -9,6 +9,7 @@ try {
     $dbConnection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die('Error de conexión: ' . $e->getMessage());
+    echo('Error de conexión: ' . $e->getMessage());
+    exit();
 }
 ?>
