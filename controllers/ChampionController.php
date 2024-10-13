@@ -32,5 +32,11 @@ class ChampionController
 
         include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/skins.php';
     }
+
+    public function showUserSkins($userId)
+    {
+        $skins = $this->model->getUserSkins($userId);
+        include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/misSkins.php';
+    }
 }
 ?>

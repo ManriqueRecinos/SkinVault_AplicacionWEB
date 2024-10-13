@@ -45,6 +45,13 @@ if (isset($_GET['action'])) {
                 echo "ID de campeón no proporcionado.";
             }
             break;
+        case 'misSkins':
+            if (isset($_SESSION['user_id'])) {
+                $controller->showUserSkins($_SESSION['user_id']);
+            } else {
+                echo "Error: Usuario no autenticado.";
+            }
+            break;
         case 'logout':
             $authController->logout();
             break;

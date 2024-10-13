@@ -58,6 +58,13 @@ class ChampionModel
         // Obtener las skins del campeón
         return $championData['data'][$championId]['skins'] ?? [];
     }
+
+    public function getUserSkins($userId)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM user_skins WHERE user_id = :userId");
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
-    
