@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $champion['name'] ?? 'Campeón no encontrado'; ?> - Aspectos Disponibles</title>
+    <title><?= htmlspecialchars($champion['name'] ?? 'Campeón no encontrado'); ?> - Aspectos Disponibles</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
-        }
-        .champion-header {
-            margin-bottom: 30px;
         }
         .default-skin img {
             height: 480px;
@@ -22,7 +19,7 @@
         .skin-card {
             transition: transform 0.3s ease;
             margin: 20px;
-            width: 150px;
+            width: 140px;
             flex-shrink: 0;
             text-align: center;
             position: relative;
@@ -57,13 +54,8 @@
         .add-button:hover {
             background-color: #138496;
         }
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: black;
-        }
-        .carousel-control-prev,
-        .carousel-control-next {
-            width: 5%;
+        .alert {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -71,19 +63,21 @@
 
 <?php require_once 'menu.php'; ?>
 
-<div class="container text-center mt-5">
-    <h1 class="champion-header"><b>Selección de aspectos de <?= $champion['name'] ?? 'Campeón no encontrado'; ?></b></h1>
+<div class="container text-center mt-3">
+    <p>ID de usuario: <?= htmlspecialchars($_SESSION['user_id']); ?></p>
+</div>
 
-    <!-- Mostrar skin por defecto -->
+<div class="container text-center mt-5">
+    <h1 class="champion-header"><b>Selección de aspectos de <?= htmlspecialchars($champion['name'] ?? 'Campeón no encontrado'); ?></b></h1>
+
     <?php if (!empty($skins)): ?>
         <div class="default-skin mb-4">
-            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= $championId; ?>_0.jpg" class="img-fluid" alt="Default Skin">
+            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= htmlspecialchars($championId); ?>_0.jpg" class="img-fluid" alt="Default Skin">
         </div>
     <?php else: ?>
-        <p>No hay aspectos disponibles para <?= $champion['name'] ?? 'este campeón'; ?>.</p>
+        <p>No hay aspectos disponibles para <?= htmlspecialchars($champion['name'] ?? 'este campeón'); ?>.</p>
     <?php endif; ?>
 
-    <!-- Carrusel para mostrar las skins -->
     <?php if (!empty($skins)): ?>
         <div id="skinCarousel" class="carousel slide mb-4" data-ride="carousel" data-interval="5000">
             <div class="carousel-inner">
@@ -93,12 +87,20 @@
                     <div class="carousel-item <?= $index === 0 ? 'active' : ''; ?>">
                         <div class="d-flex justify-content-center flex-wrap">
                             <?php foreach ($skinGroup as $skin): ?>
-                                <div class="card skin-card" id="skin-<?= $skin['num']; ?>" data-skin-num="<?= $skin['num']; ?>">
-                                    <button class="add-button" onclick="toggleAvailability(<?= $skin['num']; ?>, <?= $championId; ?>)">+</button>
-                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= $championId; ?>_<?= $skin['num']; ?>.jpg" class="card-img-top" alt="<?= $skin['name']; ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $skin['name']; ?></h5>
-                                    </div>
+                                <div class="card skin-card" id="skin-<?= htmlspecialchars($skin['num']); ?>">
+                                    <form class="skin-form">
+                                        <input type="hidden" name="userId" value="<?= htmlspecialchars($_SESSION['user_id']); ?>" readonly>
+                                        <input type="hidden" name="championId" value="<?= htmlspecialchars($championId); ?>" readonly>
+                                        <input type="hidden" name="skinName" value="<?= htmlspecialchars($skin['name']); ?>" readonly>
+                                        <input type="hidden" name="skinNumber" value="<?= htmlspecialchars($skin['num']); ?>" readonly>
+                                        <input type="hidden" name="chromas" value="<?= htmlspecialchars(isset($skin['chromas']) ? 'true' : 'false'); ?>" readonly>
+                                        <input type="hidden" name="idSkin" value="<?= htmlspecialchars($skin['id']); ?>" readonly>
+                                        <button type="button" class="add-button" title="Guardar Skin" data-skin="<?= htmlspecialchars(json_encode($skin)); ?>">+</button>
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= htmlspecialchars($championId); ?>_<?= htmlspecialchars($skin['num']); ?>.jpg" class="card-img-top" alt="<?= htmlspecialchars($skin['name']); ?>">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= htmlspecialchars($skin['name']); ?></h5>
+                                        </div>
+                                    </form>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -117,39 +119,28 @@
     <?php endif; ?>
 </div>
 
-    <!-- Sección de depuración para mostrar el arreglo de skins -->
-    <div class="container mt-5">
-        <h3>Debug: JSON de Skins</h3>
-        <pre><?php echo json_encode($skins, JSON_PRETTY_PRINT); ?></pre> <!-- Muestra el JSON formateado -->
-    </div>
-    
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    function toggleAvailability(skinNum) {
-        // Obtener el ID del usuario desde la sesión
-        const userId = <?= json_encode($_SESSION['user_id']); ?>;
-        if (!userId) {
-            alert('Por favor, inicia sesión para agregar skins.');
-            return;
-        }
-
-        fetch('skin_controller.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+$(document).ready(function(){
+    $('.add-button').click(function(){
+        let skinData = $(this).closest('.skin-card').find('.skin-form').serialize();
+        $.ajax({
+            url: '/SkinVault/controllers/AddSkin.php',
+            type: 'POST',
+            data: skinData,
+            success: function(response){
+                alert(response);
             },
-            body: JSON.stringify({ userId, skinNum })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message); // Muestra un mensaje de éxito o error
-        })
-        .catch(error => console.error('Error:', error));
-    }
+            error: function(){
+                alert('Error al guardar la skin.');
+            }
+        });
+    });
+});
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
