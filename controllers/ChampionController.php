@@ -38,5 +38,22 @@ class ChampionController
         $skins = $this->model->getUserSkins($userId);
         include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/misSkins.php';
     }
+    
+    public function deleteSkin()
+    {
+        if (!isset($_POST['skin_number'])) {
+            echo json_encode(['status' => 'error', 'message' => 'Número de skin no proporcionado.']);
+            return;
+        }
+    
+        $skinNumber = $_POST['skin_number'];  // Capturamos el número de skin
+    
+        if ($this->model->deleteSkinByNumber($skinNumber)) {
+            echo json_encode(['status' => 'success', 'message' => 'Skin eliminada correctamente.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Error al eliminar la skin.']);
+        }
+    }
+    
 }
 ?>

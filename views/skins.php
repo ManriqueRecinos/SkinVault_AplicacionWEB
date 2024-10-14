@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($champion['name'] ?? 'Campeón no encontrado'); ?> - Aspectos Disponibles</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluir Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -17,13 +19,15 @@
             border-radius: 10px;
         }
         .skin-card {
-            transition: transform 0.3s ease;
+            cursor: pointer;
             margin: 20px;
-            width: 140px;
-            flex-shrink: 0;
-            text-align: center;
-            position: relative;
-            transition: filter 0.3s ease;
+            width: 190px;
+            height: 254px;
+            background: rgb(255, 255, 255);
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 255, .2);
+            transition: all .2s;
+            box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
         }
         .skin-card img {
             height: 180px;
@@ -31,8 +35,7 @@
             border-radius: 10px;
         }
         .skin-card:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, .2);
         }
         .add-button {
             position: absolute;
@@ -57,36 +60,41 @@
         .alert {
             margin-top: 20px;
         }
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
 <?php require_once 'menu.php'; ?>
 
-<div class="container text-center mt-3">
-    <p>ID de usuario: <?= htmlspecialchars($_SESSION['user_id']); ?></p>
-</div>
-
 <div class="container text-center mt-5">
     <h1 class="champion-header"><b>Selección de aspectos de <?= htmlspecialchars($champion['name'] ?? 'Campeón no encontrado'); ?></b></h1>
 
+    <!-- Mostrar imagen por defecto -->
     <?php if (!empty($skins)): ?>
         <div class="default-skin mb-4">
-            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= htmlspecialchars($championId); ?>_0.jpg" class="img-fluid" alt="Default Skin">
+            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= htmlspecialchars($championId); ?>_0.jpg" class="img-fluid" alt="<?= htmlspecialchars($champion['name']); ?> Default Skin">
         </div>
     <?php else: ?>
         <p>No hay aspectos disponibles para <?= htmlspecialchars($champion['name'] ?? 'este campeón'); ?>.</p>
     <?php endif; ?>
 
+    <!-- Mostrar carrusel de skins solo si hay aspectos -->
     <?php if (!empty($skins)): ?>
-        <div id="skinCarousel" class="carousel slide mb-4" data-ride="carousel" data-interval="5000">
-            <div class="carousel-inner">
-                <?php 
-                $chunkedSkins = array_chunk($skins, 5);
-                foreach ($chunkedSkins as $index => $skinGroup): ?>
-                    <div class="carousel-item <?= $index === 0 ? 'active' : ''; ?>">
-                        <div class="d-flex justify-content-center flex-wrap">
-                            <?php foreach ($skinGroup as $skin): ?>
+    <div id="skinCarousel" class="carousel slide mb-4" data-ride="carousel">
+        <div class="carousel-inner">
+            <?php 
+            $chunkedSkins = array_chunk($skins, 4);
+            foreach ($chunkedSkins as $index => $skinGroup): ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : ''; ?>">
+                    <div class="d-flex justify-content-center flex-wrap">
+                        <?php foreach ($skinGroup as $skin): ?>
+                            <?php if ($skin['num'] != 0): // Omitir skin con número 0 (default) ?>
                                 <div class="card skin-card" id="skin-<?= htmlspecialchars($skin['num']); ?>">
                                     <form class="skin-form">
                                         <input type="hidden" name="userId" value="<?= htmlspecialchars($_SESSION['user_id']); ?>" readonly>
@@ -102,21 +110,27 @@
                                         </div>
                                     </form>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
-            </div>
-            <a class="carousel-control-prev" href="#skinCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Anterior</span>
-            </a>
-            <a class="carousel-control-next" href="#skinCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Siguiente</span>
-            </a>
+                </div>
+            <?php endforeach; ?>
         </div>
-    <?php endif; ?>
+
+        <!-- Botón "prev" con Font Awesome -->
+        <a class="carousel-control-prev" href="#skinCarousel" role="button" data-slide="prev">
+            <span class="fas fa-arrow-left fa-2x text-dark" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+
+        <!-- Botón "next" con Font Awesome -->
+        <a class="carousel-control-next" href="#skinCarousel" role="button" data-slide="next">
+            <span class="fas fa-arrow-right fa-2x text-dark" aria-hidden="true"></span>
+            <span class="sr-only">Siguiente</span>
+        </a>
+    </div>
+<?php endif; ?>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -135,6 +149,11 @@ $(document).ready(function(){
                 alert('Error al guardar la skin.');
             }
         });
+    });
+
+    // Desactivar el deslizamiento automático del carrusel
+    $('#skinCarousel').carousel({
+        interval: false
     });
 });
 </script>

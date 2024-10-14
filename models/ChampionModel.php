@@ -66,5 +66,14 @@ class ChampionModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function deleteSkinByNumber($skinNumber)
+    {
+        $query = "DELETE FROM user_skins WHERE skin_number = :skinNumber";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':skinNumber', $skinNumber, PDO::PARAM_INT);  // Bind del número de skin
+        return $stmt->execute();  // Ejecutamos la consulta
+    }
+    
 }
 ?>

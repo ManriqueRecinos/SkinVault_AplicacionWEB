@@ -1,0 +1,160 @@
+<style>
+    /* Estilos de la lista de iconos */
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .example-2 {
+        display: flex;
+        flex-direction: column;
+        position: fixed; /* Fija en la parte derecha */
+        right: 20px; /* Espacio desde la derecha */
+        top: 50%; /* Centrado verticalmente */
+        transform: translateY(-50%); /* Ajuste para centrado */
+    }
+
+    .icon-content {
+        margin: 10px 0; /* Espaciado entre iconos */
+        position: relative;
+        padding: 0.5rem;
+    }
+
+    .icon-content .tooltip {
+        position: absolute;
+        top: 100%;
+        right: 110%;
+        transform: translateY(200%);
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .icon-content:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+        top: -50px;
+    }
+
+    .icon-content a {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: #4d4d4d;
+        background-color: #fff;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .icon-content a:hover {
+        box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+        color: white;
+    }
+
+    .icon-content a svg {
+        position: relative;
+        z-index: 1;
+        width: 30px;
+        height: 30px;
+    }
+
+    .icon-content a .filled {
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: #000;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .icon-content a:hover .filled {
+        height: 100%;
+    }
+
+    .icon-content a[data-social="linkedin"] .filled,
+    .icon-content a[data-social="linkedin"] ~ .tooltip {
+        background-color: #0274b3;
+    }
+
+    .icon-content a[data-social="github"] .filled,
+    .icon-content a[data-social="github"] ~ .tooltip {
+        background-color: #24262a;
+    }
+
+    .icon-content a[data-social="instagram"] .filled,
+    .icon-content a[data-social="instagram"] ~ .tooltip {
+        background: linear-gradient(45deg, #405de6, #5b51db, #b33ab4, #c135b4, #e1306c, #fd1f1f);
+    }
+
+    .icon-content a[data-social="youtube"] .filled,
+    .icon-content a[data-social="youtube"] ~ .tooltip {
+        background-color: #ff0000;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="example-2">
+    <ul>
+        <li class="icon-content">
+            <a href="https://linkedin.com/" aria-label="LinkedIn" data-social="linkedin">
+                <div class="filled"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+                </svg>
+            </a>
+            <div class="tooltip">LinkedIn</div>
+        </li>
+        <li class="icon-content">
+            <a href="https://www.github.com/" aria-label="GitHub" data-social="github">
+                <div class="filled"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.18 0 .85-.01 1.54-.01 1.75 0 .22.15.46.55.38C13.71 14.53 16 11.54 16 8c0-4.42-3.58-8-8-8z" />
+                </svg>
+            </a>
+            <div class="tooltip">GitHub</div>
+        </li>
+        <li class="icon-content">
+            <a href="https://www.instagram.com/" aria-label="Instagram" data-social="instagram">
+                <div class="filled"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.299.038.851.174 1.43.42 1.92a3.9 3.9 0 0 0 .923 1.416 3.9 3.9 0 0 0 1.416.923c.49.247 1.069.382 1.92.42.851.038 1.123.048 3.297.048 2.172 0 2.445-.01 3.299-.048.851-.038 1.43-.174 1.92-.42a3.9 3.9 0 0 0 1.416-.923 3.9 3.9 0 0 0 .923-1.416c.247-.49.382-1.069.42-1.92.038-.851.048-1.123.048-3.299 0-2.172-.01-2.445-.048-3.299-.038-.851-.174-1.43-.42-1.92A3.9 3.9 0 0 0 15.58 1.48c-.49-.247-1.069-.382-1.92-.42C10.445.01 10.172 0 8 0zm0 1.44c2.052 0 2.283.008 3.085.043.8.035 1.213.154 1.487.258.35.132.623.298.917.592.294.294.46.567.592.917.103.274.222.688.258 1.487.035.802.043 1.033.043 3.085 0 2.052-.008 2.283-.043 3.085-.036.8-.154 1.213-.258 1.487-.132.35-.298.623-.592.917-.294.294-.567.46-.917.592-.274.103-.688.222-1.487.258-.802.035-1.033.043-3.085.043-2.052 0-2.283-.008-3.085-.043-.8-.035-1.213-.154-1.487-.258-.35-.132-.623-.298-.917-.592a2.98 2.98 0 0 1-.592-.917c-.103-.274-.222-.688-.258-1.487C1.448 10.283 1.44 10.052 1.44 8c0-2.052.008-2.283.043-3.085.035-.8.154-1.213.258-1.487.132-.35.298-.623.592-.917a2.98 2.98 0 0 1 .917-.592c.274-.103.688-.222 1.487-.258C5.717 1.448 5.948 1.44 8 1.44zM8 4.55a3.45 3.45 0 1 0 0 6.9 3.45 3.45 0 0 0 0-6.9zm0 1.45a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-1.172a.95.95 0 1 0 0 1.9.95.95 0 0 0 0-1.9z" />
+                </svg>
+            </a>
+            <div class="tooltip">Instagram</div>
+        </li>
+        <li class="icon-content">
+    <a href="https://youtube.com/" aria-label="Youtube" data-social="youtube">
+      <div class="filled"></div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-youtube"
+        viewBox="0 0 16 16"
+        xml:space="preserve"
+      >
+        <path
+          d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </a>
+    <div class="tooltip">Youtube</div>
+  </li>
+    </ul>
+</div>
+
