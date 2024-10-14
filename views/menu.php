@@ -12,13 +12,13 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/skinvault/index.php?action=showChampions">Campeones</a>
+                    <a class="nav-link value" href="/skinvault/index.php?action=showChampions">Campeones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/skinvault/index.php?action=misSkins">Mis Skins</a>
+                    <a class="nav-link value" href="/skinvault/index.php?action=misSkins">Mis Skins</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/skinvault/views/login.php?action=logout">Cerrar sesión</a>
+                    <a class="nav-link value" href="/skinvault/views/login.php?action=logout">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
@@ -43,24 +43,26 @@
 
     /* Enlaces de navegación */
     .navbar-nav .nav-link {
-        color: #ddd;
-        font-size: 1.1rem;
-        padding: 10px 15px;
-        transition: color 0.3s ease, background-color 0.3s ease;
+        color: aliceblue; /* Color del texto en los enlaces */
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 4px; /* Bordes redondeados */
+        transition: all 0.2s ease;
+        position: relative;
+        gap: 5px; /* Espacio entre texto e ícono */
     }
 
     /* Efecto hover en los enlaces */
     .navbar-nav .nav-link:hover {
-        background-color: #495057; /* Fondo más oscuro en hover */
-        color: #fff; /* Texto blanco en hover */
-        border-radius: 5px; /* Bordes redondeados para mejor efecto */
+        background-color: #21262cad; /* Fondo en hover */
+        color: #ffffff; /* Texto blanco en hover */
     }
 
     /* Enlace activo */
     .navbar-nav .nav-link.active {
         background-color: #007bff; /* Color azul para el enlace activo */
         color: white;
-        border-radius: 5px;
     }
 
     /* Botón de colapso a la izquierda */
@@ -79,5 +81,23 @@
             margin-left: auto;
             margin-right: auto;
         }
+    }
+
+    /* Estilos específicos de los botones */
+    .value {
+        background-color: transparent; /* Fondo transparente */
+        border: none; /* Sin borde */
+        cursor: pointer; /* Cambia el cursor */
+        transition: background-color 0.2s ease; /* Transición suave */
+    }
+
+    .value:focus,
+    .value:active {
+        background-color: #1a1f24; /* Fondo más oscuro al enfocar */
+        outline: none; /* Sin contorno */
+    }
+
+    .value svg {
+        width: 15px; /* Tamaño del ícono */
     }
 </style>
