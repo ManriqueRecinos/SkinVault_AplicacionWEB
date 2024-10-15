@@ -21,8 +21,8 @@
         .skin-card {
             cursor: pointer;
             margin: 20px;
-            width: 190px;
-            height: 254px;
+            width: 160px;
+            height: 274px;
             background: rgb(255, 255, 255);
             border-radius: 5px;
             border: 1px solid rgba(0, 0, 255, .2);
@@ -65,6 +65,11 @@
         }
         .carousel-control-prev-icon, .carousel-control-next-icon {
             display: none;
+        }
+        body.dark-mode .card {
+            background: #2c2c2c; /* Color gris para el modo oscuro */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más claro en modo oscuro */
+            color: #ffffff; /* Color del texto en el card */
         }
     </style>
 </head>

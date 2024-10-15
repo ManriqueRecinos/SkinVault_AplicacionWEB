@@ -19,7 +19,11 @@
     .card:hover {
       box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, .2);
     }
-
+    body.dark-mode .card {
+            background: #2c2c2c; /* Color gris para el modo oscuro */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más claro en modo oscuro */
+            color: #ffffff; /* Color del texto en el card */
+        }
     /* Estilos para la barra de búsqueda */
     .form {
       --input-bg: #FFf;
@@ -174,7 +178,6 @@
                 <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= $champion['id']; ?>_0.jpg" class="card-img-top" alt="<?= $champion['id']; ?>">
                 <div class="card-body">
                   <h5 class="card-title"><?= $champion['name']; ?></h5>
-                  <p class="card-text"><?= $champion['title']; ?></p>
                 </div>
               </div>
             </a>

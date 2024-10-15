@@ -17,6 +17,12 @@
         .card:hover {
             box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, .2);
         }
+        /* Estilos para el modo oscuro */
+        body.dark-mode .card {
+            background: #2c2c2c; /* Color gris para el modo oscuro */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más claro en modo oscuro */
+            color: #ffffff; /* Color del texto en el card */
+        }
         
         /* Estilos para la barra de búsqueda */
         .form {
