@@ -1,14 +1,16 @@
 <?php
-require_once('../dbConnection.php');
-require_once('../controllers/AuthController.php');
+require_once$_SERVER["DOCUMENT_ROOT"] . '/skinvault/dbConnection.php'; // Verifica que la ruta de conexión esté correcta
+require_once('../controllers/AuthController.php'); // Verifica la ruta del controlador
 
-// Pasamos la conexión a la base de datos al constructor
+// Asegúrate de que la variable $dbConnection esté definida correctamente
 $authController = new AuthController($dbConnection);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Llamar al método register() del controlador
     $authController->register();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

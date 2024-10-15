@@ -232,6 +232,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="label">Mostrar contraseña</span>
             </div>
 
+            <!-- Checkbox para mantener sesión iniciada -->
+            <div class="checkbox-container">
+                <input type="checkbox" id="rememberMe" name="remember_me">
+                <label for="rememberMe" class="cbx"></label>
+                <span class="label">Mantener sesión iniciada</span>
+            </div>
+
             <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
 
             <div class="text-center register-link">
