@@ -109,10 +109,27 @@
         color: #fff; /* Cambiar color de texto a blanco en modo oscuro */
     }
 
-    /* Cambiar el color de la tooltip en modo oscuro */
-    body.dark-mode .icon-content .tooltip {
-        background-color: rgba(255, 255, 255, 0.8); /* Color de fondo de la tooltip */
+    /* Cambiar los colores en modo oscuro */
+    body.dark-mode .icon-content a[data-social="linkedin"] .filled,
+    body.dark-mode .icon-content a[data-social="linkedin"] ~ .tooltip {
+        background-color: #0274b3;
     }
+
+    body.dark-mode .icon-content a[data-social="github"] .filled,
+    body.dark-mode .icon-content a[data-social="github"] ~ .tooltip {
+        background-color: #24262a;
+    }
+
+    body.dark-mode .icon-content a[data-social="instagram"] .filled,
+    body.dark-mode .icon-content a[data-social="instagram"] ~ .tooltip {
+        background: linear-gradient(45deg, #405de6, #5b51db, #b33ab4, #c135b4, #e1306c, #fd1f1f);
+    }
+
+    body.dark-mode .icon-content a[data-social="youtube"] .filled,
+    body.dark-mode .icon-content a[data-social="youtube"] ~ .tooltip {
+        background-color: #ff0000;
+    }
+
 </style>
 
 <div class="example-2">
