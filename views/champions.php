@@ -24,9 +24,9 @@
             border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más claro en modo oscuro */
             color: #ffffff; /* Color del texto en el card */
         }
-    /* Estilos para la barra de búsqueda */
+        /* Estilos para la barra de búsqueda */
     .form {
-      --input-bg: #FFf;
+      --input-bg: #f2f2f2; /* Color de fondo inicial */
       --padding: 1.5em;
       --rotate: 80deg;
       --gap: 2em;
@@ -37,6 +37,20 @@
       background: var(--input-bg);
       position: relative;
       border-radius: 4px;
+      color: #333;
+      border: none; /* Evitar bordes */
+    }
+
+    /* Cambiar fondo a blanco al hacer clic */
+    .form input:focus {
+      background: #fff; /* Cambia el color de fondo a blanco */
+      border: none; /* Sin bordes */
+    }
+
+    /* Asegurar que el espacio alrededor de la barra de búsqueda también cambie de color */
+    .form:focus-within {
+      background: #fff; /* Cambiar todo el contenedor a blanco */
+      border: none; /* Sin bordes */
     }
 
     .form label {
@@ -51,7 +65,7 @@
       padding-inline-start: calc(var(--padding) + var(--gap));
       outline: none;
       background: none;
-      border: 0;
+      border: none; /* Sin bordes */
     }
 
     .form svg {
@@ -95,43 +109,13 @@
       visibility: hidden;
     }
 
-    .form input:focus ~ .icon {
-      transform: rotate(var(--rotate)) scale(1.3);
-    }
-
-    .form input:focus ~ .icon .swap-off {
-      opacity: 1;
-      transform: rotate(-80deg);
-      visibility: visible;
-      color: var(--icon-change-color);
-    }
-
-    .form input:focus ~ .icon .swap-on {
-      opacity: 0;
-      visibility: visible;
-    }
-
-    .form input:valid ~ .icon {
-      transform: scale(1.3) rotate(var(--rotate));
-    }
-
-    .form input:valid ~ .icon .swap-off {
-      opacity: 1;
-      visibility: visible;
-      color: var(--icon-change-color);
-    }
-
-    .form input:valid ~ .icon .swap-on {
-      opacity: 0;
-      visibility: visible;
-    }
-
-    .form input:valid ~ .close-btn {
+    .form input:focus ~ .close-btn {
       opacity: 1;
       visibility: visible;
       transform: scale(1);
       transition: 0s;
     }
+
 
     /* Espaciado para que la barra de búsqueda tenga margen */
     .search-container {

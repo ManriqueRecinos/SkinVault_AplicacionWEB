@@ -135,9 +135,8 @@
         </a>
     </div>
 <?php endif; ?>
-
 </div>
-
+<?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/views/redes.php'; ?>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 $(document).ready(function(){

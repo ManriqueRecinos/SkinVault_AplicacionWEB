@@ -23,115 +23,99 @@
             border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más claro en modo oscuro */
             color: #ffffff; /* Color del texto en el card */
         }
-        
+                
         /* Estilos para la barra de búsqueda */
         .form {
-            --input-bg: #FFf;
-            --padding: 1.5em;
-            --rotate: 80deg;
-            --gap: 2em;
-            --icon-change-color: #15A986;
-            --height: 40px;
-            width: 100%;
-            padding-inline-end: 1em;
-            background: var(--input-bg);
-            position: relative;
-            border-radius: 4px;
+        --input-bg: #f2f2f2; /* Color de fondo inicial */
+        --padding: 1.5em;
+        --rotate: 80deg;
+        --gap: 2em;
+        --icon-change-color: #15A986;
+        --height: 40px;
+        width: 100%;
+        padding-inline-end: 1em;
+        background: var(--input-bg);
+        position: relative;
+        border-radius: 4px;
+        color: #333;
+        border: none; /* Evitar bordes */
+        }
+
+        /* Cambiar fondo a blanco al hacer clic */
+        .form input:focus {
+        background: #fff; /* Cambia el color de fondo a blanco */
+        border: none; /* Sin bordes */
+        }
+
+        /* Asegurar que el espacio alrededor de la barra de búsqueda también cambie de color */
+        .form:focus-within {
+        background: #fff; /* Cambiar todo el contenedor a blanco */
+        border: none; /* Sin bordes */
         }
 
         .form label {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: var(--height);
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: var(--height);
         }
 
         .form input {
-            width: 100%;
-            padding-inline-start: calc(var(--padding) + var(--gap));
-            outline: none;
-            background: none;
-            border: 0;
+        width: 100%;
+        padding-inline-start: calc(var(--padding) + var(--gap));
+        outline: none;
+        background: none;
+        border: none; /* Sin bordes */
         }
 
         .form svg {
-            color: #111;
-            transition: 0.3s cubic-bezier(.4,0,.2,1);
-            position: absolute;
-            height: 15px;
+        color: #111;
+        transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+        position: absolute;
+        height: 15px;
         }
 
         .icon {
-            position: absolute;
-            left: var(--padding);
-            transition: 0.3s cubic-bezier(.4,0,.2,1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        position: absolute;
+        left: var(--padding);
+        transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         }
 
         .swap-off {
-            transform: rotate(-80deg);
-            opacity: 0;
-            visibility: hidden;
+        transform: rotate(-80deg);
+        opacity: 0;
+        visibility: hidden;
         }
 
         .close-btn {
-            background: none;
-            border: none;
-            right: calc(var(--padding) - var(--gap));
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #111;
-            padding: 0.1em;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            transition: 0.3s;
-            opacity: 0;
-            transform: scale(0);
-            visibility: hidden;
+        background: none;
+        border: none;
+        right: calc(var(--padding) - var(--gap));
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #111;
+        padding: 0.1em;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        transition: 0.3s;
+        opacity: 0;
+        transform: scale(0);
+        visibility: hidden;
         }
 
-        .form input:focus ~ .icon {
-            transform: rotate(var(--rotate)) scale(1.3);
+        .form input:focus ~ .close-btn {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transition: 0s;
         }
 
-        .form input:focus ~ .icon .swap-off {
-            opacity: 1;
-            transform: rotate(-80deg);
-            visibility: visible;
-            color: var(--icon-change-color);
-        }
-
-        .form input:focus ~ .icon .swap-on {
-            opacity: 0;
-            visibility: visible;
-        }
-
-        .form input:valid ~ .icon {
-            transform: scale(1.3) rotate(var(--rotate));
-        }
-
-        .form input:valid ~ .icon .swap-off {
-            opacity: 1;
-            visibility: visible;
-            color: var(--icon-change-color);
-        }
-
-        .form input:valid ~ .icon .swap-on {
-            opacity: 0;
-            visibility: visible;
-        }
-
-        .form input:valid ~ .close-btn {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1);
-            transition: 0s;
-        }
     </style>
 </head>
 <body>
@@ -180,6 +164,7 @@
     <?php endif; ?>
     </div>
 </div>
+<?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/views/redes.php'; ?>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

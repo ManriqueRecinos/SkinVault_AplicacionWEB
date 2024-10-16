@@ -47,6 +47,7 @@
         /* Botón de colapso a la izquierda */
         .navbar-toggler {
             margin-right: auto; /* Mueve el botón a la izquierda */
+            z-index: 1060; /* Asegura que el botón esté por encima del menú */
         }
 
         /* Ícono del botón de colapso en blanco */
@@ -54,11 +55,46 @@
             filter: invert(1); /* Cambia el ícono a blanco */
         }
 
-        /* Responsive: centrar el logo en dispositivos pequeños */
+        /* Menú de hamburguesa desde la izquierda para pantallas pequeñas */
         @media (max-width: 767px) {
+            .collapse {
+                position: fixed;
+                top: 0;
+                left: -300px; /* Comienza fuera de la pantalla a la izquierda */
+                width: 300px;
+                height: 100%;
+                background-color: #343a40; /* Color de fondo del menú desplegable */
+                transition: left 0.3s ease; /* Transición suave al desplegar */
+                z-index: 1050; /* Asegura que el menú esté por encima de otros elementos */
+            }
+
+            .collapse.show {
+                left: 0; /* Se despliega a la izquierda */
+            }
+
             .navbar-brand {
                 margin-left: auto;
                 margin-right: auto;
+            }
+
+            .navbar-nav {
+                flex-direction: column; /* Cambia la dirección de la lista a columna en móvil */
+                padding-top: 20px; /* Espaciado superior */
+            }
+
+            .nav-link {
+                margin: 10px 0; /* Espaciado entre los enlaces */
+            }
+        }
+
+        /* Estilos generales para pantallas grandes */
+        @media (min-width: 768px) {
+            .collapse {
+                position: static;
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                transition: none;
             }
         }
 
@@ -136,7 +172,7 @@
 
         /* Estilos para el modo oscuro */
         body.dark-mode {
-            background-color: #121212;
+            background-color: #2c2c2c;
             color: #ffffff;
         }
 
@@ -149,16 +185,16 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 sticky-top">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <a class="navbar-brand ml-3" href="/skinvault/index.php">SkinVault</a>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-center"> <!-- Agregando align-items-center para centrar verticalmente -->
+                <ul class="navbar-nav align-items-center">
+                    <!-- Interruptor de modo oscuro -->
                     <li class="nav-item">
-                        <!-- Interruptor de modo oscuro -->
                         <label class="switch">
                             <input type="checkbox" id="darkModeToggle">
                             <span class="slider"></span>
@@ -169,6 +205,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link value" href="/skinvault/index.php?action=misSkins">Mis Skins</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link value" href="/skinvault/index.php?action=nosotros">Nosotros</a> <!-- Nuevo enlace -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link value" href="/skinvault/views/login.php?action=logout">Cerrar sesión</a>
@@ -204,9 +243,27 @@
             applyDarkMode(true);
         }
 
-        // Añadir el evento al interruptor
+        // Cambiar el estado del modo oscuro al alternar el interruptor
         toggleSwitch.addEventListener('change', () => {
             applyDarkMode(toggleSwitch.checked);
+        });
+
+        // Desplegar y cerrar el menú desde la izquierda
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.getElementById('navbarNav');
+
+        navbarToggler.addEventListener('click', () => {
+            navbarCollapse.classList.toggle('show');
+        });
+
+        // Cerrar el menú al hacer clic en cualquier enlace
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
+                }
+            });
         });
     </script>
 </body>
