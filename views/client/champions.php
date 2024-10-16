@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/views/menu.php'; ?>
+  <?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/views/client/menu.php'; ?>
 
   <div class="container text-center mt-5">
     <h1>BUSCA TU <span class="text-primary">CAMPEÓN</span></h1>
@@ -59,7 +59,7 @@
     </div>
   </div>
 
-  <?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/views/redes.php'; ?>
+  <?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/views/client/redes.php'; ?>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

@@ -1,3 +1,5 @@
+<?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/models/champName.php';?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

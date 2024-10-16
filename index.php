@@ -3,7 +3,7 @@ session_start(); // Iniciar la sesión
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['user'])) { // Verifica si 'user' está en la sesión
-    header('Location: /skinvault/views/login.php'); // Redirige a la página de inicio de sesión
+    header('Location: /skinvault/views/client/login.php'); // Redirige a la página de inicio de sesión
     exit();
 }
 

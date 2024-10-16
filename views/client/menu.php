@@ -36,7 +36,7 @@
                         <a class="nav-link value" href="/skinvault/index.php?action=nosotros">Nosotros</a> <!-- Nuevo enlace -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link value" href="/skinvault/views/login.php?action=logout">Cerrar sesión</a>
+                        <a class="nav-link value" href="/skinvault/views/client/login.php?action=logout">Cerrar sesión</a>
                     </li>
                 </ul>
             </div>

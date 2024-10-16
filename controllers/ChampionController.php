@@ -13,7 +13,7 @@ class ChampionController
     public function showChampions()
     {
         $champions = $this->model->getAllChampions();
-        include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/champions.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/client/champions.php';
     }
 
     public function showSkins($championId)
@@ -30,13 +30,13 @@ class ChampionController
             return;
         }
 
-        include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/skins.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/client/skins.php';
     }
 
     public function showUserSkins($userId)
     {
         $skins = $this->model->getUserSkins($userId);
-        include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/misSkins.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/skinvault/views/client/misSkins.php';
     }
     
     public function deleteSkin()

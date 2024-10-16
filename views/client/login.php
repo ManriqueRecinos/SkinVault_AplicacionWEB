@@ -1,6 +1,6 @@
 <?php
-require_once('../dbConnection.php');
-require_once('../controllers/AuthController.php');
+require_once('../../dbConnection.php');
+require_once('../../controllers/AuthController.php');
 
 // Aquí pasamos la conexión a la base de datos al constructor
 $authController = new AuthController($dbConnection);

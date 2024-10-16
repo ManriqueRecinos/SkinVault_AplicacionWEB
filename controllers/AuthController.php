@@ -39,7 +39,7 @@ class AuthController
                     $this->userModel->saveRememberToken($user['id'], $token);
                 }
 
-                header('Location: ../'); // Redirigir a champions.php
+                header('Location: ../../'); // Redirigir a champions.php
                 exit;
             } else {
                 // Si las credenciales son incorrectas
@@ -81,7 +81,7 @@ class AuthController
             $result = $this->userModel->registerUser($username, $hashedPassword);
 
             if ($result) {
-                header('Location: ../views/login.php');
+                header('Location: ../client/login.php');
                 exit;
             } else {
                 echo "Error al registrar el usuario.";
@@ -93,7 +93,7 @@ class AuthController
     {
         session_start();
         session_destroy(); // Cerrar sesión
-        header('Location: /skinvault/views/login.php'); // Redirigir al login
+        header('Location: /skinvault/views/client/login.php'); // Redirigir al login
         exit();
     }
 }
