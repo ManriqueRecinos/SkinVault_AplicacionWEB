@@ -6,6 +6,7 @@
     <title>Error 404 - SkinVault</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
     <style>
         body {
             background: linear-gradient(to bottom, #4ac3e3, #78c4e8); /* Degradado azul */
