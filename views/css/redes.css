@@ -1,0 +1,130 @@
+    /* Estilos de la lista de iconos */
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .example-2 {
+        display: flex;
+        flex-direction: column;
+        position: fixed; /* Fija en la parte derecha */
+        right: 20px; /* Espacio desde la derecha */
+        top: 50%; /* Centrado verticalmente */
+        transform: translateY(-50%); /* Ajuste para centrado */
+    }
+
+    .icon-content {
+        margin: 10px 0; /* Espaciado entre iconos */
+        position: relative;
+        padding: 0.5rem;
+    }
+
+    .icon-content .tooltip {
+        position: absolute;
+        top: 100%;
+        right: 110%;
+        transform: translateY(200%);
+        color: #ffffff;
+        padding: 6px 10px;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .icon-content:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+        top: -50px;
+    }
+
+    .icon-content a {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: #2c2c2c;
+        background-color: #fff; /* Color de fondo normal */
+        transition: all 0.3s ease-in-out;
+    }
+
+    .icon-content a:hover {
+        box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+        color: white;
+    }
+
+    .icon-content a svg {
+        position: relative;
+        z-index: 1;
+        width: 30px;
+        height: 30px;
+    }
+
+    .icon-content a .filled {
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: #000;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .icon-content a:hover .filled {
+        height: 100%;
+    }
+
+    /* Estilos para cada red social */
+    .icon-content a[data-social="tiktok"] .filled,
+    .icon-content a[data-social="tiktok"] ~ .tooltip {
+        background-color: #000000;
+    }
+
+    .icon-content a[data-social="github"] .filled,
+    .icon-content a[data-social="github"] ~ .tooltip {
+        background-color: #24262a;
+    }
+
+    .icon-content a[data-social="instagram"] .filled,
+    .icon-content a[data-social="instagram"] ~ .tooltip {
+        background: linear-gradient(45deg, #405de6, #5b51db, #b33ab4, #c135b4, #e1306c, #fd1f1f);
+    }
+
+    .icon-content a[data-social="youtube"] .filled,
+    .icon-content a[data-social="youtube"] ~ .tooltip {
+        background-color: #ff0000;
+    }
+
+    /* Estilos para modo oscuro */
+    body.dark-mode .icon-content a {
+        background-color: #2c2c2c; /* Cambiar fondo a negro en modo oscuro */
+        color: #fff; /* Cambiar color de texto a blanco en modo oscuro */
+    }
+
+    /* Cambiar los colores en modo oscuro */
+    body.dark-mode .icon-content a[data-social="tiktok"] .filled,
+    body.dark-mode .icon-content a[data-social="tiktok"] ~ .tooltip {
+        background-color: #000000;
+    }
+
+    body.dark-mode .icon-content a[data-social="github"] .filled,
+    body.dark-mode .icon-content a[data-social="github"] ~ .tooltip {
+        background-color: #24262a;
+    }
+
+    body.dark-mode .icon-content a[data-social="instagram"] .filled,
+    body.dark-mode .icon-content a[data-social="instagram"] ~ .tooltip {
+        background: linear-gradient(45deg, #405de6, #5b51db, #b33ab4, #c135b4, #e1306c, #fd1f1f);
+    }
+
+    body.dark-mode .icon-content a[data-social="youtube"] .filled,
+    body.dark-mode .icon-content a[data-social="youtube"] ~ .tooltip {
+        background-color: #ff0000;
+    }

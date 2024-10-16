@@ -1,0 +1,39 @@
+body {
+    background-color: #650a0a; /* Degradado azul */
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+    height: 100vh; /* Asegura que la altura sea 100% de la ventana */
+    display: flex;
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+}
+
+.error-container {
+    text-align: center;
+    background-image: url('../../images/poroTroste.png');
+    border-radius: 10px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 90%; /* Ancho responsivo */
+    max-width: 500px; /* Máximo ancho */
+}
+
+h1 {
+    font-size: 72px; /* Tamaño grande para el código de error */
+    margin-bottom: 20px;
+    color: #007bff; /* Color azul */
+}
+
+p {
+    font-size: 18px; /* Tamaño del texto */
+    margin-bottom: 30px;
+}
+
+a.btn {
+    background-color: #007bff; /* Color del botón */
+    color: white; /* Color del texto del botón */
+}
+
+a.btn:hover {
+    background-color: #0056b3; /* Color del botón en hover */
+}

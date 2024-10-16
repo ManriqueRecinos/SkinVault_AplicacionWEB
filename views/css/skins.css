@@ -1,0 +1,94 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+}
+.background-image {
+    position: absolute;
+    top: 70px; /* Ajusta este valor según la altura de tu menú */
+    left: 0;
+    width: 100%;
+    height: calc(110% - 0px); /* Ajusta la altura restante */
+    background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= htmlspecialchars($championId); ?>_0.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-bottom: 100px;
+}
+.champion-header {
+    color: white; /* Color del texto en modo claro */
+    font-size: 2rem; /* Tamaño de la fuente */
+}
+.slider-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.4); /* Cambiado a más transparente */
+    padding: 10px 0;
+}
+body.dark-mode .slider-container {
+    background: rgba(44, 44, 44, 0.8); /* Color de fondo del slider en modo oscuro */
+}
+.skin-card {
+    cursor: pointer;
+    margin: 10px;
+    width: 160px;
+    height: 274px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 255, .2);
+    transition: all .2s;
+    box-shadow: 8px 12px 2px 1px rgba(0, 0, 255, .2);
+    position: relative;
+}
+body.dark-mode .skin-card {
+    background: #2c2c2c; /* Color del card en modo oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más claro en modo oscuro */
+    color: #ffffff; /* Color del texto en el card en modo oscuro */
+}
+.skin-card img {
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.skin-card:hover {
+    transform: scale(1.05);
+    box-shadow: -0px 12px 2px -1px rgba(0, 0, 255, .2);
+}
+.add-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+.add-button:hover {
+    background-color: #138496;
+}
+.alert {
+    margin-top: 20px;
+}
+body.dark-mode .champion-header {
+    color: white; /* Color del texto en modo oscuro */
+}

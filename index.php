@@ -56,7 +56,7 @@ if (isset($_GET['action'])) {
             $authController->logout();
             break;
         default:
-            header('Location: /skinvault/views/error.php'); // Redirige a una página de error
+            header('Location: /skinvault/views/Err/error.php'); // Redirige a una página de error
             break;
     }
 } else {
