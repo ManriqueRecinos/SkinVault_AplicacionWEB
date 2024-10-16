@@ -19,9 +19,7 @@
 
 <div class="background-image"></div> <!-- Imagen de fondo -->
 
-<div class="container content mt-5">
-    <h1 class="champion-header"><b>Selección de aspectos de <?= htmlspecialchars($champion['name'] ?? 'Campeón no encontrado'); ?></b></h1>
-</div>
+
 
 <div class="slider-container">
     <!-- Mostrar slider de skins solo si hay aspectos -->
@@ -56,6 +54,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
 $(document).ready(function(){
+    // Establecer la skin por defecto como fondo al cargar la página
+    let defaultSkinNumber = 0; // Número de skin por defecto (0)
+    $('.background-image').css('background-image', 'url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= htmlspecialchars($championId); ?>_' + defaultSkinNumber + '.jpg)');
+
     // Inicializar Slick Slider sin autoplay
     $('#skinSlider').slick({
         slidesToShow: 4,
@@ -120,6 +122,7 @@ $(document).ready(function(){
         $('.background-image').css('background-image', 'url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/<?= htmlspecialchars($championId); ?>_' + skinNum + '.jpg)');
     });
 });
+
 </script>
 
 </body>

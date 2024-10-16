@@ -54,7 +54,7 @@
     <?php endif; ?>
     </div>
 </div>
-<?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/views/redes.php'; ?>
+<?php require_once $_SERVER["DOCUMENT_ROOT"] . '/skinvault/views/client/redes.php'; ?>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

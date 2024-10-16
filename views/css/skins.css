@@ -8,7 +8,7 @@ body {
 }
 .background-image {
     position: absolute;
-    top: 70px; /* Ajusta este valor según la altura de tu menú */
+    top: 75px; /* Ajusta este valor según la altura de tu menú */
     left: 0;
     width: 100%;
     height: calc(110% - 0px); /* Ajusta la altura restante */
@@ -24,10 +24,12 @@ body {
     text-align: center;
     padding-bottom: 100px;
 }
-.champion-header {
+.champion-header b{
     color: white; /* Color del texto en modo claro */
     font-size: 2rem; /* Tamaño de la fuente */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Trazo negro */
 }
+
 .slider-container {
     position: fixed;
     bottom: 0;
