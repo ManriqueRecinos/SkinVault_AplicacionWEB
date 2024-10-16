@@ -11,18 +11,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($userId && $championId && $skinName && $skinNumber !== false && $chromas !== null && $idSkin) {
         try {
-            $stmt = $dbConnection->prepare("INSERT INTO user_skins (user_id, champion_id, skin_name, skin_number, chromas, skin_id, timestamp) VALUES (:userId, :championId, :skinName, :skinNumber, :chromas, :idSkin, NOW())");
-            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-            $stmt->bindParam(':championId', $championId, PDO::PARAM_STR);
-            $stmt->bindParam(':skinName', $skinName, PDO::PARAM_STR);
-            $stmt->bindParam(':skinNumber', $skinNumber, PDO::PARAM_INT);
-            $stmt->bindParam(':chromas', $chromas, PDO::PARAM_BOOL);
-            $stmt->bindParam(':idSkin', $idSkin, PDO::PARAM_STR);
+            // Primero, verifica si la skin ya existe para este usuario
+            $checkStmt = $dbConnection->prepare("SELECT COUNT(*) FROM user_skins WHERE user_id = :userId AND skin_id = :idSkin");
+            $checkStmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $checkStmt->bindParam(':idSkin', $idSkin, PDO::PARAM_STR);
+            $checkStmt->execute();
+            $count = $checkStmt->fetchColumn();
 
-            if ($stmt->execute()) {
-                echo '¡Skin guardada correctamente!';
+            if ($count > 0) {
+                echo 'Esta skin ya ha sido guardada.';
             } else {
-                echo 'Error al guardar la skin.';
+                // Si no existe, procede a la inserción
+                $stmt = $dbConnection->prepare("INSERT INTO user_skins (user_id, champion_id, skin_name, skin_number, chromas, skin_id, timestamp) VALUES (:userId, :championId, :skinName, :skinNumber, :chromas, :idSkin, NOW())");
+                $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+                $stmt->bindParam(':championId', $championId, PDO::PARAM_STR);
+                $stmt->bindParam(':skinName', $skinName, PDO::PARAM_STR);
+                $stmt->bindParam(':skinNumber', $skinNumber, PDO::PARAM_INT);
+                $stmt->bindParam(':chromas', $chromas, PDO::PARAM_BOOL);
+                $stmt->bindParam(':idSkin', $idSkin, PDO::PARAM_STR);
+
+                if ($stmt->execute()) {
+                    echo '¡Skin guardada correctamente!';
+                } else {
+                    echo 'Error al guardar la skin.';
+                }
             }
         } catch (PDOException $e) {
             echo 'Error de base de datos: ' . $e->getMessage();
