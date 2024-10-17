@@ -84,7 +84,7 @@
         // Confirmación antes de eliminar la skin
         if (confirm('¿Estás seguro de que quieres eliminar esta skin?')) {
             $.ajax({
-                url: '/skinvault/controllers/ChampionController.php?action=deleteSkin',  // URL al controlador
+                url: '/skinvault/controllers/deleteSkin.php',  // URL al nuevo script PHP
                 type: 'POST',
                 data: { skin_number: skinNumber },  // Enviamos el número de skin
                 success: function(response) {
@@ -109,6 +109,7 @@
         }
     });
 });
+
 </script>
 
 </body>

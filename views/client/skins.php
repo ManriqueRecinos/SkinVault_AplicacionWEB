@@ -19,8 +19,6 @@
 
 <div class="background-image"></div> <!-- Imagen de fondo -->
 
-
-
 <div class="slider-container">
     <!-- Mostrar slider de skins solo si hay aspectos -->
     <?php if (!empty($skins)): ?>
